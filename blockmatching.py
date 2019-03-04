@@ -1,4 +1,8 @@
+from mpi4py import MPI
 import numpy as np
+
+comm = MPI.COMM_WORLD
+rank = comm.Get_rank()
 arr1 = np.zeros((16,16))
 arr2 = np.ones((16,16))
 x = 0
