@@ -31,15 +31,15 @@ if(rank == 0):
             val2 = min(val,val2)
             comm.send(val2,dest = 1, tag = 1)
 if(rank == 1):
-    for i in range(6, 11):
-        for j in range(6, 11):
+    for i in range(5, 11):
+        for j in range(5, 11):
             val2 = comm.recv(source = 0, tag = 1)
             val3 = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
             val4 = min(val2,val3)
             comm.send(val4,dest = 2, tag = 2)
 if(rank == 2):
-    for i in range(12, 15):
-        for j in range(12, 15):
+    for i in range(11, 15):
+        for j in range(11, 15):
             val4 = comm.recv(source = 1, tag = 2)
             val5 = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
             val6 = min(val4,val5)

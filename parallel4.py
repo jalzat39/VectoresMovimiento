@@ -34,22 +34,22 @@ if(rank == 0):
             val2 = min(val,val2)
             comm.send(val2,dest = 1, tag = 1)
 if(rank == 1):
-    for i in range(5, 8):
-        for j in range(5, 8):
+    for i in range(4, 8):
+        for j in range(4, 8):
             val2 = comm.recv(source = 0, tag = 1)
             val3 = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
             val4 = min(val2,val3)
             comm.send(val4,dest = 2, tag = 2)
 if(rank == 2):
-    for i in range(9, 12):
-        for j in range(9, 12):
+    for i in range(8, 12):
+        for j in range(8, 12):
             val4 = comm.recv(source = 1, tag = 2)
             val5 = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
             val6 = min(val4,val5)
             comm.send(val6,dest = 3, tag = 3)
 if(rank == 3):
-    for i in range(13, 15):
-        for j in range(13, 15):
+    for i in range(12, 15):
+        for j in range(12, 15):
             val6 = comm.recv(source = 2, tag = 3)
             val7 = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
             val8 = min(val6,val7)
