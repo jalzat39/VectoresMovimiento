@@ -9,6 +9,7 @@ x = 0
 y = 0
 dx = 1
 dy = 1
+val = 100000
 val2 = 100000
 val3 = 100000
 val4 = 100000
@@ -18,7 +19,7 @@ if(rank == 0):
         for j in range(0, 7):
             val = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
             val2 = min(val,val2)
-if(rank == 1)
+if(rank == 1):
     for i in range(8, 15):
         for j in range(8, 15):
             val3 = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
