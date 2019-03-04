@@ -1,10 +1,17 @@
 from mpi4py import MPI
 import numpy as np
+from PIL import Image
 
+img = Image.open("anchor.png")
+img2 = Image.open("controller.png")
+img = img.convert('1')
+img2 = img.convert('1')
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
-arr1 = np.zeros((16,16))
-arr2 = np.ones((16,16))
+arr1 = np.array(img)
+arr2 = np.array(img2)
+arr1 = arr1*1.0
+arr2 = arr2*1.0
 x = 0
 y = 0
 dx = 1
