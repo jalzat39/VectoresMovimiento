@@ -14,6 +14,7 @@ val2 = 100000
 val3 = 100000
 val4 = 100000
 val5 = 100000
+val6 = 100000
 if(rank == 0):
     for i in range(0, 7):
         for j in range(0, 7):
@@ -27,4 +28,5 @@ if(rank == 1):
 
 
 val5 = min(val2,val4)
-print(val5)
+val6 = min(val5,val6)
+print(val6)
