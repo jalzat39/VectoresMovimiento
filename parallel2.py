@@ -24,7 +24,7 @@ if(rank == 1):
         for j in range(8, 15):
             val3 = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
             val4 = min(val,val2)
+
+
 val5 = min(val2,val4)
-
-
 print(val5)
