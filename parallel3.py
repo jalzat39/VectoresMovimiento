@@ -34,4 +34,4 @@ if(rank == 2):
             val6 = min(val5,val6)
 val7 = min(val2,val4)
 val8 = min(val6,val7)
-print(val5)
+print(val8)
