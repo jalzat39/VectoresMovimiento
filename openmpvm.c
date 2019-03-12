@@ -16,7 +16,7 @@ int main(int argc, char const *argv[])
 	srand(time(NULL));
 	//int n = atoi(argv[1]);
     int n = 16;
-	int vector__1[n][n], vector__2[n][n], vector__res[n][n];
+	int vector__1[n][n], vector__2[n][n];
 	for(i = 0; i < n; i++)
 	{
 		for(j = 0; j < n; j++)
@@ -29,14 +29,14 @@ int main(int argc, char const *argv[])
 	#pragma omp parallel
 	{
 		int tid;
-		int i, j, k, suma = 0;
+		int i, j,  suma = 0;
 		tid = omp_get_thread_num();
 		#pragma omp for 
 		for(i = 0; i <= n ; i++)
 		{
 			for(j = 0; j <= n ; j++)
 			{
-			    suma = (vector__1[x + i][y + y] - vector__2[x + i + dx][y + j + dy]);
+			    suma = (vector__1[x + i][y + j] - vector__2[x + i + dx][y + j + dy]);
 				if(val > suma){
                     val = suma;
                 }
