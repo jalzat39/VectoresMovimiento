@@ -42,8 +42,8 @@ int main(int argc, char const *argv[])
                 }
 			}
 		}
-		printf("%d", tid);
-		printf("%d", val);
+		printf("Estamos en el thread %d\n", tid);
+		printf("El valor da %d\n", val);
 	}
     // Print val pero no se como Xd
 	return 0;
