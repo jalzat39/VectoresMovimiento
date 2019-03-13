@@ -21,7 +21,7 @@ int main(int argc, char const *argv[])
 	char get_char;
 	input = fopen("controller.png","rb");
 	while((get_char=fgetc(input))!=EOF){
-		printf("Estamos en el thread %c\n", get_char);
+		
 	}
 	fclose(input);
 	for(i = 0; i < n; i++)
@@ -33,9 +33,9 @@ int main(int argc, char const *argv[])
 			vector__2[i][j] = 1;
 		}
 	}
+	
 	#pragma omp parallel
 	{
-		int tid;
 		int i, j,  suma = 0;
 		tid = omp_get_thread_num();
 		#pragma omp for 
@@ -52,6 +52,5 @@ int main(int argc, char const *argv[])
 		printf("Estamos en el thread %d\n", tid);
 		printf("El valor da %d\n", val);
 	}
-    // Print val pero no se como Xd
-	return 0;
+ 	return 0;
 }
