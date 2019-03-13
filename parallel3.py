@@ -46,4 +46,4 @@ if(rank == 2):
 val7 = min(val2,val4)
 val8 = min(val6,val7)
 print(val8)
-print(rank)
+print("Saludos desde el rango :",rank)

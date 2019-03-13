@@ -17,6 +17,13 @@ int main(int argc, char const *argv[])
 	//int n = atoi(argv[1]);
     int n = 16;
 	int vector__1[n][n], vector__2[n][n];
+	FILE *input;
+	char get_char;
+	input = fopen("controller.png","rb");
+	while((get_char=fgetc(input))!=EOF){
+		printf("Estamos en el thread %c\n", get_char);
+	}
+	fclose(input)
 	for(i = 0; i < n; i++)
 	{
 		for(j = 0; j < n; j++)
