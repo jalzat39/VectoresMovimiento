@@ -2,6 +2,12 @@
 #include <omp.h>
 #include <time.h>
 #include <stdlib.h>
+#include <stdlib.h>
+#include <math.h>
+#include <cv.h>
+#include <highgui.h>
+#include <cxcore.h>
+#include <cxtypes.h>
 
 
 
@@ -17,14 +23,13 @@ int main(int argc, char const *argv[])
 	//int n = atoi(argv[1]);
     int n = 16;
 	int vector__1[n][n], vector__2[n][n];
-	FILE *input;
-	char get_char;
-	input = fopen("controller.png","rb");
-	while((get_char=fgetc(input))!=EOF){
-		
-	}
-	fclose(input);
-	for(i = 0; i < n; i++)
+	IplImage* img = cvLoadImage( "controller.png" );
+ 	cvNamedWindow( "Example1", CV_WINDOW_AUTOSIZE );
+ 	cvShowImage("Example1", img);
+ 	cvWaitKey(0);
+ 	cvReleaseImage( &img );
+ 	cvDestroyWindow( "Example1" );
+ return 0;for(i = 0; i < n; i++)
 	{
 		for(j = 0; j < n; j++)
 		{
