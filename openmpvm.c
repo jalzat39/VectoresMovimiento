@@ -38,7 +38,7 @@ int main(int argc, char const *argv[])
 			{
 			    suma = (vector__1[x + i][y + j] - vector__2[x + i + dx][y + j + dy]);
 				if(val > suma){
-                    val = suma;
+                    val = suma * - 1;
                 }
 			}
 		}
