@@ -2,60 +2,55 @@
 #include <omp.h>
 #include <time.h>
 #include <stdlib.h>
-#include <stdlib.h>
 #include <math.h>
-#include <cv.h>
-#include <highgui.h>
-#include <cxcore.h>
-#include <cxtypes.h>
+#include <opencv2/opencv.hpp>
 
-
-
-int main(int argc, char const *argv[])
-{
-	int i, j;
-	int x = 0;
-	int y = 0;
-    int dx = 1;
-    int dy = 1;
-    int val = 10000;
-	srand(time(NULL));
-	//int n = atoi(argv[1]);
-    int n = 16;
-	int vector__1[n][n], vector__2[n][n];
-	IplImage* img = cvLoadImage( "controller.png" );
- 	cvNamedWindow( "Example1", CV_WINDOW_AUTOSIZE );
- 	cvShowImage("Example1", img);
- 	cvWaitKey(0);
- 	cvReleaseImage( &img );
- 	cvDestroyWindow( "Example1" );
- return 0;for(i = 0; i < n; i++)
-	{
-		for(j = 0; j < n; j++)
-		{
-			//(rand()%4)+
-			vector__1[i][j] = 1;
-			vector__2[i][j] = 1;
-		}
+using namespace cv;
+int main(int argc, char const *argv[]){
+  int i, j;
+  int x = 0;
+  int y = 0;
+  int dx = 1;
+  int dy = 1;
+  int val = 10000;
+  const char* imageName = argv[1];
+  Mat image;
+  image = imread(imageName, 1);
+  if(argc != 2 || !image.data){
+    printf("No image data \n");
+    return -1;
+  }
+  Mat gray_image;
+  cvtColor(image, gray_image, COLOR_BGR2GRAY);
+  uint8_t *myData = gray_image.data;
+  int width = gray_image.cols;
+  int height = gray_image.rows;
+  int _stride = image.step;
+  srand(time(NULL));
+  //int n = atoi(argv[1]);
+  int vector__1[height][width], vector__2[height][width];
+  for(i = 0; i < height; i++){
+    for(j = 0; j < width; j++){
+      uint8_t val = myData[i * _stride + j];
+      vector__1[i][j] = val;
+      vector__2[i][j] = val;
+    }
+  }
+  #pragma omp parallel
+  {
+    int i, j,  suma = 0;
+    int tid = omp_get_thread_num();
+  #pragma omp for
+    for(i = 0; i <= height ; i++){
+      for(j = 0; j <= width ; j++){
+	suma = (vector__1[x + i][y + j] - vector__2[x + i + dx][y + j + dy]);
+	if(val > suma){
+	  val = suma * - 1;
 	}
-	
-	#pragma omp parallel
-	{
-		int i, j,  suma = 0;
-		tid = omp_get_thread_num();
-		#pragma omp for 
-		for(i = 0; i <= n ; i++)
-		{
-			for(j = 0; j <= n ; j++)
-			{
-			    suma = (vector__1[x + i][y + j] - vector__2[x + i + dx][y + j + dy]);
-				if(val > suma){
-                    val = suma * - 1;
-                }
-			}
-		}
-		printf("Estamos en el thread %d\n", tid);
-		printf("El valor da %d\n", val);
-	}
- 	return 0;
+      }
+    }
+    printf("Estamos en el thread %d\n", tid);
+    printf("El valor da %d\n", val);
+  }
+  return 0;
 }
