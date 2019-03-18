@@ -29,12 +29,11 @@ val10 = 100000
 val11 = 100000
 if(comm == 2):
     if(rank == 0):
-    for i in range(0, 7):
-        for j in range(0, 7):
-            val = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
-            val2 = min(val,val2)
-            comm.send(val2,dest = 1, tag = 1)
-
+        for i in range(0, 7):
+            for j in range(0, 7):
+                val = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
+                val2 = min(val,val2)
+                comm.send(val2,dest = 1, tag = 1)
     if(rank == 1):
     for i in range(8, 15):
         for j in range(8, 15):
@@ -47,12 +46,12 @@ if(comm == 2):
     print("Saludos desde el rango :",rank)
 if(comm == 3):
     if(rank == 0):
-    for i in range(0, 4):
-        for j in range(0, 4):
-            val = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
-            val2 = min(val,val2)
-            comm.send(val2,dest = 1, tag = 1)
-    if(rank == 1):
+        for i in range(0, 4):
+            for j in range(0, 4):
+                val = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
+                val2 = min(val,val2)
+                comm.send(val2,dest = 1, tag = 1)
+        if(rank == 1):
         for i in range(5, 12):
             for j in range(5, 12):
                 val2 = comm.recv(source = 0, tag = 1)
@@ -71,11 +70,11 @@ if(comm == 3):
     print("Saludos desde el rango :",rank)
 if(comm == 4):
     if(rank == 0):
-    for i in range(0, 4):
-        for j in range(0, 4):
-            val = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
-            val2 = min(val,val2)
-            comm.send(val2,dest = 1, tag = 1)
+        for i in range(0, 4):
+            for j in range(0, 4):
+                val = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
+                val2 = min(val,val2)
+                comm.send(val2,dest = 1, tag = 1)
     if(rank == 1):
         for i in range(5, 8):
             for j in range(5, 8):
