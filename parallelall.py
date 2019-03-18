@@ -35,15 +35,15 @@ if(comm == 2):
                 val2 = min(val,val2)
                 comm.send(val2,dest = 1, tag = 1)
     if(rank == 1):
-    for i in range(8, 15):
-        for j in range(8, 15):
-            val2 = comm.recv(source = 0, tag = 1)
-            val3 = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
-            val4 = min(val2,val3)
+        for i in range(8, 15):
+            for j in range(8, 15):
+                val2 = comm.recv(source = 0, tag = 1)
+                val3 = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
+                val4 = min(val2,val3)
 
-    val5 = min(val2,val4)
-    print(val5)
-    print("Saludos desde el rango :",rank)
+val5 = min(val2,val4)
+print(val5)
+print("Saludos desde el rango :",rank)
 if(comm == 3):
     if(rank == 0):
         for i in range(0, 4):
@@ -51,7 +51,7 @@ if(comm == 3):
                 val = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
                 val2 = min(val,val2)
                 comm.send(val2,dest = 1, tag = 1)
-        if(rank == 1):
+    if(rank == 1):
         for i in range(5, 12):
             for j in range(5, 12):
                 val2 = comm.recv(source = 0, tag = 1)
@@ -64,10 +64,10 @@ if(comm == 3):
                 val4 = comm.recv(source = 1, tag = 2)
                 val5 = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
                 val6 = min(val4,val5)
-    val7 = min(val2,val4)
-    val8 = min(val6,val7)
-    print(val8)
-    print("Saludos desde el rango :",rank)
+val7 = min(val2,val4)
+val8 = min(val6,val7)
+print(val8)
+print("Saludos desde el rango :",rank)
 if(comm == 4):
     if(rank == 0):
         for i in range(0, 4):
@@ -95,8 +95,8 @@ if(comm == 4):
                 val6 = comm.recv(source = 2, tag = 3)
                 val7 = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
                 val8 = min(val6,val7)
-    val9 = min(val2,val4)
-    val10 = min(val6,val8)
-    val11 = min(val9,val10)
-    print(val11)
-    print("Saludos desde el rango :",rank)
+val9 = min(val2,val4)
+val10 = min(val6,val8)
+val11 = min(val9,val10)
+print(val11)
+print("Saludos desde el rango :",rank)

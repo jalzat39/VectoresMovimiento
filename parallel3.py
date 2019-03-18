@@ -31,8 +31,8 @@ if(rank == 0):
             val2 = min(val,val2)
             comm.send(val2,dest = 1, tag = 1)
 if(rank == 1):
-    for i in range(5, 12):
-        for j in range(5, 12):
+    for i in range(5, 11):
+        for j in range(5, 11):
             val2 = comm.recv(source = 0, tag = 1)
             val3 = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
             val4 = min(val2,val3)
