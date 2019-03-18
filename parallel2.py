@@ -24,7 +24,6 @@ val5 = 100000
 if(rank == 0):
     for i in range(0, 7):
         for j in range(0, 7):
-            val2 = comm.recv(source = 1, tag = 0)
             val = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
             val2 = min(val,val2)
             comm.send(val2,dest = 1, tag = 1)
@@ -35,7 +34,6 @@ if(rank == 1):
             val2 = comm.recv(source = 0, tag = 1)
             val3 = arr1[x+i,y+i] - arr2[x+i+dx,y+j+dy]
             val4 = min(val2,val3)
-            comm.send(val4,dest = 0, tag = 0)
 
 val5 = min(val2,val4)
 print(val5)
