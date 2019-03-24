@@ -1,0 +1,3 @@
+Explicacion de openmp
+
+En mpi tenemos un codigo en c(openmp no esta en python todavia), el cual paraleliza lo que va luego del #pragma omp parallel, el codigo que va luego del #pragma omp parallel es ejecutado por todos los threads, pero tambien tenemos un ciclo que paralelizar, este va luego del #pragma omp for, lo que significa es que ese codigo va a estar distribuido entre los threads disponibles
